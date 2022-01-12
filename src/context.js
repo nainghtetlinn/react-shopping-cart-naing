@@ -32,6 +32,7 @@ const svgs = {
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
+  const [total, setTotal] = useState(0);
   const [cartItems, setCartItems] = useState([]);
   const [item, setItem] = useState({
     name: 'Fall Limited Edition Sneakers',
@@ -77,6 +78,15 @@ const AppProvider = ({ children }) => {
     setCartItems(cartItems.filter((item, index) => index !== ind));
   };
 
+  const getTotal = (preV, curV) => {
+    return preV + curV.amount;
+  };
+
+  useEffect(() => {
+    const totalAmount = cartItems.reduce(getTotal, 0);
+    setTotal(totalAmount);
+  }, [cartItems]);
+
   return (
     <AppContext.Provider
       value={{
@@ -84,6 +94,7 @@ const AppProvider = ({ children }) => {
         svgs,
         item,
         cartItems,
+        total,
         increase,
         decrease,
         add,

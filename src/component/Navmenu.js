@@ -4,7 +4,7 @@ import Cart from './Cart';
 import './navmenu.css';
 
 const Navmenu = () => {
-  const { svgs, avatar, cartItem, total } = useGlobalContext();
+  const { svgs, avatar, total } = useGlobalContext();
   const { logo, menu, cart, close } = svgs;
 
   const [openSidebar, setOpenSidebar] = useState(false);
